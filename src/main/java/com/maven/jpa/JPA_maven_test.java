@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+
 public class JPA_maven_test {
 
 	private EntityManager manager;
@@ -25,14 +26,26 @@ public class JPA_maven_test {
 			System.out.println(listAlumno.getNombre() + listAlumno.getApellido() + listAlumno.getDni() + listAlumno.getEmail() + listAlumno.getSexo());
 		}
 		jpa_test.ActualizaAlumno(1,"Melani", "Barrios", "78945632", "F", "melani2@gmail.com");
+		System.out.println("---------------Buscar Alumno-------------");
+		List<Alumno> bucarAlumno = jpa_test.BuscarAlumno(2);
+		
+		for(Alumno alu:bucarAlumno)
+		{
+			System.out.println(
+					" Nombre :" + alu.getNombre() + 
+					" Apellido :" + alu.getApellido() + 
+					" Sexo :" + alu.getSexo() + " DNI :" + alu.getDni()	+ 
+					" E-mail :" + alu.getEmail()
+					);
+		}
 	}
 
 	public void InsertarAlumno() 
 	{
 		Alumno alumno = new Alumno("Luis Enrique","Gomez","10554488","M","luis@gma");
-		Alumno alumno1 = new Alumno("Luis Enrique","Gomez","10554488","M","luis@gma");
-		Alumno alumno2 = new Alumno("Luis Enrique","Gomez","10554488","M","luis@gma");
-		Alumno alumno3 = new Alumno("Luis Enrique","Gomez","10554488","M","luis@gma");
+		Alumno alumno1 = new Alumno("Carlito el lindo","Pro","10654789","M","carlito@gma");
+		Alumno alumno2 = new Alumno("Camaleon Danti","Novi","35468426","M","camaleon@gma");
+		Alumno alumno3 = new Alumno("Jusepe Ri","Richeti","79865732","M","jusepe@gma");
 		
 		manager.persist(alumno3);
 		manager.persist(alumno2);
@@ -66,6 +79,16 @@ public class JPA_maven_test {
 		{
 			System.out.println("Alumno NO Actualizado");
 		}
+	}
+	public List<Alumno> BuscarAlumno(int id)
+	{
+		String buscar ="select a from Alumno a where a.idalumno=:codigo";
+		
+		Query buscarAlumno=manager.createQuery(buscar,Alumno.class).setParameter("codigo", id);
+		
+		
+		List<Alumno> listAlumno=buscarAlumno.getResultList();
+		return listAlumno;
 	}
 	
 }
