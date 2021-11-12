@@ -1,32 +1,47 @@
 package com.maven.modelo;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="tipocliente")
 public class TipoCliente 
 {
-	private int idtipoempleado;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="idtipocliente")
+	private int idtipocliente;
+	
+	@Column(name="descripcion")
 	private String descripcion;
 	
 	
 	
 	public TipoCliente() {}
 	
-	public TipoCliente(int idtipoempleado, String descripcion) {
-		this.idtipoempleado = idtipoempleado;
+	public TipoCliente(int idtipocliente, String descripcion) {
+		this.idtipocliente = idtipocliente;
+		this.descripcion = descripcion;
+	}
+
+	public TipoCliente(String descripcion) {
 		this.descripcion = descripcion;
 	}
 	
-	public int getIdtipoempleado() {
-		return idtipoempleado;
+	public int getIdtipocliente() {
+		return idtipocliente;
 	}
-	public void setIdtipoempleado(int idtipoempleado) {
-		this.idtipoempleado = idtipoempleado;
+
+	public void setIdtipocliente(int idtipocliente) {
+		this.idtipocliente = idtipocliente;
 	}
+
 	public String getDescripcion() {
 		return descripcion;
 	}
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
 	
 	
 }
