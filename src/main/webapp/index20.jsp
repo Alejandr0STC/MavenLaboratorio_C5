@@ -3,7 +3,7 @@
 <h2>Hello World!</h2>
 <%= new java.util.Date() %>
 <h1>Gestionando proyectos con Maven</h1>
-<form action="calculos.jsp" method="post">
+<form action="procesarformulario" method="get">
 	<table >
 		<tr>
 			<td>Valor de Hora</td>
@@ -19,7 +19,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input type="submit" name="Calcular">
+				<input type="submit" value="Calcular">
 			</td>
 		</tr>
 	</table>
